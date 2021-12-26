@@ -4,24 +4,16 @@ import type { Location } from "~/travel/locations"
 import locations from "~/travel/locations"
 import TravelCard from "~/travel/travel-card"
 
-type Data = {
-    locations: Location[]
-    token: string
-}
-
-export function loader(): Data {
-    return {
-        locations,
-        token: process.env.MAPBOX_ACCESS_TOKEN ?? "",
-    }
+export function loader(): Location[] {
+    return locations
 }
 
 export default function Index() {
-    const { locations, token } = useLoaderData<Data>()
+    const locations = useLoaderData<Location[]>()
     return (
         <div className="m-10 flex">
             {locations.map((l, idx) => (
-                <TravelCard key={idx} location={l} token={token} />
+                <TravelCard key={idx} location={l} />
             ))}
         </div>
     )
