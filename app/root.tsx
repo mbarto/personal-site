@@ -9,9 +9,13 @@ import {
 } from "remix"
 import type { MetaFunction } from "remix"
 import styles from "./tailwind.css"
+import olStyles from "ol/ol.css"
 
 export function links() {
-    return [{ rel: "stylesheet", href: styles }]
+    return [
+        { rel: "stylesheet", href: styles },
+        { rel: "stylesheet", href: olStyles },
+    ]
 }
 
 export const meta: MetaFunction = () => {
@@ -44,6 +48,7 @@ export default function App() {
                 </div>
                 <Outlet />
                 <ScrollRestoration />
+                <Scripts />
                 {process.env.NODE_ENV === "development" && <LiveReload />}
             </body>
         </html>
