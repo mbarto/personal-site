@@ -11,9 +11,9 @@ export const loader: LoaderFunction = async ({ params }) => {
     if (location) {
         const url = `${mapBoxUrl}/${location.lon},${location.lat},${zoom}/${size}x${size}?access_token=${token}`
         try {
-            const image = await fetch(url)
-            // const image = await imageRes.arrayBuffer()
-            return new Response(image.body, {
+            const imageRes = await fetch(url)
+            const image = await imageRes.arrayBuffer()
+            return new Response(image, {
                 status: 200,
                 headers: {
                     "Content-Type": "image/png",
